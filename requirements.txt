@@ -1,0 +1,7 @@
+awscli
+numpy
+pandas
+nibabel
+boto3
+s3fs
+dask
