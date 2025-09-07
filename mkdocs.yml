@@ -1,0 +1,19 @@
+site_name: WoMAD Model
+site_url: https://saamehsanaaee.github.io/WoMAD/
+
+nav:
+  - Welcome: index.md
+  - Getting Started: getting-started.md
+  - Methods: methods.md
+
+theme:
+  name: simple-blog
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
