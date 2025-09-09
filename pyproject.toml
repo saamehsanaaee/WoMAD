@@ -3,8 +3,8 @@ name = "Working Memory Architecture and Demand (WoMAD) Model"
 version = "0.1.2"
 description = "[Brief description]"
 authors = [
-    { name = "Saameh Sanaaee", email = "saameh.sanaaee@neuromatchacademy.org" },
-    { name = "Baitong Mu", email = "TBD! :)"}
+    "Saameh Sanaaee <saameh.sanaaee@neuromatchacademy.org>",
+    "Baitong Mu <email TBD! :)>"
 ]
 license = "CC-BY-4.0"
 readme = "README.md"
