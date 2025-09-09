@@ -6,4 +6,4 @@
 
 ## WoMAD Modules: Segmentation, CNN, GNN, LSTM, and Fusion
 
-## Results, Interpretation, and Implications:
+## Results: Interpretation and Implications
