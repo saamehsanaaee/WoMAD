@@ -25,10 +25,10 @@ jobs:
           python-version: "3.x"
 
       - name: Install Poetry
-        run: pip install poetry
+        run: pip install poetry==1.8.2
 
       - name: Install Project Dependencies
-        run: poetry install --no-dev
+        run: poetry install
 
       - name: Deploy to GitHub Pages
         run: poetry run mkdocs gh-deploy --force
