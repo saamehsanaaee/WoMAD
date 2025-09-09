@@ -1,4 +1,4 @@
-name: Deploy Docs
+name: Deploy Docs with Poetry
 
 on:
   push:
@@ -19,16 +19,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Configure Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Install Python and MkDocs
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
-      - run: pip install mkdocs mkdocs-material mkdocs-simple-blog
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install Project Dependencies
+        run: poetry install
 
       - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+        run: poetry run mkdocs gh-deploy --force
