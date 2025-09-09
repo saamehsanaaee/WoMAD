@@ -16,19 +16,21 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
-requests = "*"
-nilearn = "*"
-nibabel = "*"
-brainspace = "*"
-numpy = "*"
-pandas = "*"
-scikit-learn = "*"
-torch = "*"
-torch-geometric = "*"
-scipy = "*"
+requests = ""
+nilearn = ""
+nibabel = ""
+brainspace = ""
+numpy = ""
+pandas = ""
+scikit-learn = ""
+torch = ""
+torch-geometric = ""
+scipy = ""
 rich = ">=13.5.2"
-mkdocs = "*"
-mkdocs-material = "*"
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = ""
+mkdocs-material = ""
 mkdocs-simple-blog = "*"
 
 [tool.black]
