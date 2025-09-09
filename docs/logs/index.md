@@ -8,21 +8,22 @@ The entries will be chronological and organized by date and version. We'll try o
 
 ## WoMAD v0.1.0
 
-### Log `2025-09-07`: WoMAD's first commits :) - v0.1.1
+### Log 2025-09-07: First commits :) - v0.1.1
 
-**Deploy Docs Workflow (creation and errors):**
+#### Deploy Docs Workflow (creation and errors):
 
 Although the code is basically thin air at this point, Saameh decided it would be a good idea to *finalize* the structure of the repository. So, we got our first error. Shocking! I know!
 
 This lead to creation of v0.1.1, a mostly empty repository that at least has a decent, mostly empty documents page on a Github page.
 
-### Log `2025-09-09`: Expansion of Documentation - v0.1.2
+### Log 2025-09-09: Expansion of Documentation - v0.1.2
 
 #### Expansion of documentation structure
 
 Do you see a pattern? Before outlining the actual `.py` files, *someone* decided it would be a good idea to make the document and the Github page for our lovely WoMAD Model perfect. What is perfect? Nobody knows.
 
 Our next tasks are:
+
 * Outlining all `.py` files and complete their description docstrings
 * Outlining `the-code.md` and `the-science.md` files
 * Expand main `README.md` file
