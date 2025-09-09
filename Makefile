@@ -1,4 +1,4 @@
-.PHONY: install format lint test docs clean
+.PHONY: install format lint test docs clean deploy
 
 install:
 	pip install -e .
@@ -14,6 +14,14 @@ test:
 
 docs:
 	mkdocs build
+
+deploy: docs
+	git checkout gh-pages
+	cp -r site/* .
+	git add .
+	git commit -m "Manual docs deployment"
+	git push origin gh-pages
+	git checkout main
 
 clean:
 	find . -type f -name "*.pyc" -delete
