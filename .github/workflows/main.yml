@@ -1,4 +1,4 @@
-name: Deploy Docs with Poetry
+name: Deploy Docs
 
 on:
   push:
@@ -12,23 +12,23 @@ permissions:
 
 jobs:
   deploy:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.x"
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-    - name: Install Poetry
-      run: pip install poetry==1.8.2
+      - name: Install Python and MkDocs
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - run: pip install mkdocs mkdocs-material mkdocs-simple-blog
 
-    - name: Install Project Dependencies
-      run: poetry install --only main --with docs
-
-    - name: Deploy to GitHub Pages
-      run: poetry run mkdocs gh-deploy --force
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force

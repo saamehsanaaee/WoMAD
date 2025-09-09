@@ -1,37 +1,36 @@
-[tool.poetry]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
 name = "Working Memory Architecture and Demand (WoMAD) Model"
 version = "0.1.2"
 description = "[Brief description]"
+requires-python = ">=3.9"
+license = {text = "Creative Commons Attribution 4.0 International (CC BY 4.0)"}
 authors = [
-    "Saameh Sanaaee <saameh.sanaaee@neuromatchacademy.org>",
-    "Baitong Mu <email TBD! :)>"
+    { name = "Saameh Sanaaee", email = "saameh.sanaaee@neuromatchacademy.org" },
+    { name = "Baitong Mu", email = "TBD! :)"}
 ]
-license = "CC-BY-4.0"
 readme = "README.md"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: Other/Proprietary License",
     "Operating System :: OS Independent",
 ]
-
-[tool.poetry.dependencies]
-python = "^3.10"
-requests = ""
-nilearn = ""
-nibabel = ""
-brainspace = ""
-numpy = ""
-pandas = ""
-scikit-learn = ""
-torch = ""
-torch-geometric = ""
-scipy = ""
-rich = ">=13.5.2"
-
-[tool.poetry.group.docs.dependencies]
-mkdocs = ""
-mkdocs-material = ""
-mkdocs-simple-blog = "*"
+dependencies = [
+    "requests",
+    "nilearn",
+    "nibabel",
+    "brainspace",
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "torch",
+    "torch-geometric",
+    "scipy",
+    "rich>=13.5.2"
+]
 
 [tool.black]
 line-length = 88
@@ -40,7 +39,3 @@ target-version = ['py39']
 [tool.flake8]
 max-line-length = 88
 extend-ignore = "E203"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
