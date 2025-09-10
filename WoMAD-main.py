@@ -1,3 +1,5 @@
 """
-    [Description for main function that will run the whole pipeline.]
+    This is where the magic happens.
+    This module will use all submodules of the `./WoMAD` directory
+    to create the FINAL VERSION of WoMAD.
 """
