@@ -1,26 +1,39 @@
 # WoMAD Project Logs
 
-This page includes the logs for our project. You'll be able to get a glance at the process (and hopefully, progress) of WoMAD when going through these logs.
+You can find the logs and upcoming plans for the WoMAD model in this page.
 
-The entries will be chronological and organized by date and version. We'll try our best to provide a clear history of the changes and tasks. You'll also find out signs of our junior-researcher-ness when you examine our solutions to issues we face. We'll laugh at those together.
+* Get a glance at the process (and hopefully, progess) of WoMAD: [Chronological Logs](#chronological-logs)
+* Take a look at our upcoming plans for the model: [Upcoming Versions and Plans](upcoming.md)
 
 ---
 
-## WoMAD v0.1.0
+## Overview:
 
-### Log 2025-09-07: First commits :) - v0.1.1
+* Current version of WoMAD: 0.1.2
+* Current step: Outlining the `.py` files
+* Next step: Outline documentation and start defining basic functions for data acquisition
 
-#### Deploy Docs Workflow (creation and errors):
+---
 
-Although the code is basically thin air at this point, Saameh decided it would be a good idea to *finalize* the structure of the repository. So, we got our first error. Shocking! I know!
+## Chronological Logs
 
-This lead to creation of v0.1.1, a mostly empty repository that at least has a decent, mostly empty documents page on a Github page.
+### WoMAD v0.1.0
 
-### Log 2025-09-09: Expansion of Documentation - v0.1.2
+#### Log #1: 2025-09-07
 
-#### Expansion of documentation structure
+**Created the Deploy Docs Workflow (v0.1.1)**
 
-Do you see a pattern? Before outlining the actual `.py` files, *someone* decided it would be a good idea to make the document and the Github page for our lovely WoMAD Model perfect. What is perfect? Nobody knows.
+Although the code is basically thin air at this point, Saameh decided it would be a good idea to *finalize* the structure of the repository. So, we got our fist error. Shocking! We know!
+
+Hence, v0.1.1 was created. A mostly empty repository that has a decent, but mostly empty documentation on [our GitHub page](https://saamehsanaaee.github.io/WoMAD)
+
+#### Log #2: 2025-09-09
+
+**Expanded the Documentation structure (v0.1.2)**
+
+Do you see a pattern?
+
+Before outlining the actual `.py` files, *someone* decided it would be a good idea to make the document and the GitHub page for our lovely WoMAD model *better*. What is "better"? Nobody knows.
 
 Our next tasks are:
 
@@ -28,48 +41,14 @@ Our next tasks are:
 * Outlining `the-code.md` and `the-science.md` files
 * Expand main `README.md` file
 
----
+#### Log #3: 2025-09-10
 
-## Upcoming versions, logs, stages:
+**Filled docstrings of the `.py` files to describe each module (v0.1.2)**
 
-### WoMAD v0.2.0
+The `.py` files are now partially outlined on a very high level. The next step is to make this outline more granular and create the logical flow of the code within each module.
 
-* **Data Acquisition & Preprocessing**
-* **Tasks:**
-    * Develop functions to download the data
-    * Parse the dataset and isolate trials using the EV files
-    * Normalize data and save to a DataFrame
+#### Log #4: 2025-09-18
 
-### WoMAD v0.3.0
+**Outlined all `.py` files to create the basic structure of the modules (v0.1.3)**
 
-* **Core Model Development**
-* **Tasks:**
-    * Define PyTorch `Dataset` and `DataLoader`
-    * Create the 3D U-Net model (segmentation module)
-    * Create a training loop (K-fold cross-validation)
-
-### WoMAD v0.4.0
-
-* **Parallel Modules & Fusion Module**
-* **Tasks:**
-    * Build the feature extraction modules:
-        * Temporal module
-        * Spatiotemporal module
-        * GNN
-    * Build the final fusion layer that combines their outputs
-
-### WoMAD v0.5.0
-
-* **Complete Model Evaluation & Interpretation**
-* **Tasks:**
-    * Evaluate model performance
-    * Save model predictions as NIfTI files
-    * Save (evaluation and prediction) plots
-
-### WoMAD v1.0.0
-
-* **First "release" of the "final" version of WoMAD**
-* **Tasks:**
-    * Finalize all code (well ... as final as it can be)
-    * Finalize documentation
-    * Add findings to `The Science` page
+The `.py` files are now properly outlined. The next step is to populate each section with their respective functions.

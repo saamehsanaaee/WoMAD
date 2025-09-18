@@ -8,7 +8,7 @@ nav:
   - Logs: 'logs/index.md'
 
 theme:
-  name: moonstone
+  name: simple-blog
 
 markdown_extensions:
   - pymdownx.highlight:

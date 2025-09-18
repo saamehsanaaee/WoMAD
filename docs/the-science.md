@@ -2,8 +2,8 @@
 
 ## The WoMAD Model: An Overview
 
-## The Data: HCP-Young Adult (2025 Release?)
+## The Data: HCP-Young Adult 2025 Release
 
-## WoMAD Modules: Segmentation, CNN, GNN, LSTM, and Fusion
+## WoMAD Modules: WoMAD is a modular model!
 
 ## Results: Interpretation and Implications
