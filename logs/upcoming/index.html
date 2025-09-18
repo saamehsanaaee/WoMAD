@@ -1,28 +1,28 @@
 <!doctype html>
 <html data-bs-theme="">
     <head>
-                <title>Working Memory Architecture and Demand (WoMAD) Model</title>
+                <title>Upcoming versions: - Working Memory Architecture and Demand (WoMAD) Model</title>
 
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            <meta name="description" content="None">
-            <link rel="canonical" href="https://saamehsanaaee.github.io/WoMAD/">
+            
+            <link rel="canonical" href="https://saamehsanaaee.github.io/WoMAD/logs/upcoming/">
             
 
             
-                <link  rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+                <link  rel="icon" type="image/x-icon" href="../../assets/img/favicon.ico">
             
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-            <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-            <link rel="stylesheet" href="assets/css/root.min.css">
-            <link rel="stylesheet" href="assets/css/main.min.css">
-            <link rel="stylesheet" href="assets/css/media.min.css">
-            <link rel="stylesheet" href="assets/css/mkdocstrings.min.css">
-                <script src="search/main.js"></script>
+            <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../assets/css/root.min.css">
+            <link rel="stylesheet" href="../../assets/css/main.min.css">
+            <link rel="stylesheet" href="../../assets/css/media.min.css">
+            <link rel="stylesheet" href="../../assets/css/mkdocstrings.min.css">
+                <script src="../../search/main.js"></script>
 
             
                 
@@ -56,20 +56,20 @@
         <li class="nav-item" id="component-menu">
             <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class=" active 
-                            nav-link text-gray text-decoration-none" href=".">[WoMAD Home]</a>
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../..">[WoMAD Home]</a>
                         </li>
                         <li class="nav-item">
                             <a class="
-                            nav-link text-gray text-decoration-none" href="the-code/">[The Code]</a>
+                            nav-link text-gray text-decoration-none" href="../../the-code/">[The Code]</a>
                         </li>
                         <li class="nav-item">
                             <a class="
-                            nav-link text-gray text-decoration-none" href="the-science/">[The Science]</a>
+                            nav-link text-gray text-decoration-none" href="../../the-science/">[The Science]</a>
                         </li>
                         <li class="nav-item">
                             <a class="
-                            nav-link text-gray text-decoration-none" href="logs/">[Logs]</a>
+                            nav-link text-gray text-decoration-none" href="../">[Logs]</a>
                         </li>
             </ul>
         </li>
@@ -102,7 +102,7 @@
             <main><!-- block search -->
 <div class="collapse" id="collapseExample">
     <div role="search" class="search-box">
-        <form id="rtd-search-form" class="wy-form" action="./search.html" method="get">
+        <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
             <input type="text" name="q" class="search-query"
             placeholder="Search docs" title="Type search term here" />
         </form>
@@ -116,18 +116,64 @@
     <article>
         <header>
             
-                <h1 class=" title" id="component-title">WoMAD Home</h1>
+                <h1 class=" title" id="component-title">Upcoming versions:</h1>
             
         </header>
-        <p><h1 id="welcome-to-the-womad-model-documentation-page">Welcome to the WoMAD model documentation page!</h1>
-<p>This page will contain the documentation for our Working Memory Architecture and Demand (WoMAD) model.</p>
-<p>[Brief description of the project, where it's been published, authors, etc.; and introduction, if you will.]</p>
-<p>Here you will find information on:</p>
+        <p><h1 id="upcoming-versions">Upcoming versions:</h1>
+<h2 id="womad-v020">WoMAD v0.2.0</h2>
 <ul>
-<li>How the project code and repository is structured, plus <a href="the-code/">installation and usage guide</a>.</li>
-<li>The detailed version of <a href="the-science/">our science and the methods</a> used in the research.</li>
+<li><strong>Data Acquisition &amp; Preprocessing</strong></li>
+<li><strong>Tasks:</strong><ul>
+<li>Develop functions to download the data</li>
+<li>Parse the dataset and isolate trials using the EV files</li>
+<li>Normalize data and save to a DataFrame</li>
 </ul>
-<p>The WoMAD source code is available on <a href="https://github.com/saamehsanaaee/WoMAD">GitHub</a>.</p></p>
+</li>
+</ul>
+<h2 id="womad-v030">WoMAD v0.3.0</h2>
+<ul>
+<li><strong>Core Model Development</strong></li>
+<li><strong>Tasks:</strong><ul>
+<li>Define PyTorch <code>Dataset</code> and <code>DataLoader</code></li>
+<li>Create the 3D U-Net model (segmentation module)</li>
+<li>Create a training loop (K-fold cross-validation)</li>
+</ul>
+</li>
+</ul>
+<h2 id="womad-v040">WoMAD v0.4.0</h2>
+<ul>
+<li><strong>Parallel Modules &amp; Fusion Module</strong></li>
+<li><strong>Tasks:</strong><ul>
+<li>Build the feature extraction modules:<ul>
+<li>Temporal module</li>
+<li>Spatiotemporal module</li>
+<li>GNN</li>
+</ul>
+</li>
+<li>Build the final fusion layer that combines their outputs</li>
+</ul>
+</li>
+</ul>
+<h2 id="womad-v050">WoMAD v0.5.0</h2>
+<ul>
+<li><strong>Complete Model Evaluation &amp; Interpretation</strong></li>
+<li><strong>Tasks:</strong><ul>
+<li>Evaluate model performance</li>
+<li>Save model predictions as NIfTI files</li>
+<li>Save (evaluation and prediction) plots</li>
+</ul>
+</li>
+</ul>
+<h2 id="womad-v100">WoMAD v1.0.0</h2>
+<ul>
+<li><strong>First "release" of the "final" version of WoMAD</strong></li>
+<li><strong>Tasks:</strong><ul>
+<li>Finalize all code (well ... as final as it can be)</li>
+<li>Finalize documentation</li>
+<li>Add findings to <code>The Science</code> page</li>
+</ul>
+</li>
+</ul></p>
     </article>
 </section>
 <!-- endblock -->
@@ -137,19 +183,6 @@
 
             
                     <!-- block preview -->
-    <div class="preview row row-cols-md-3 text-center pt-md-3" id="component-preview">
-        <div class="col themed-grid-col">
-            <a rel="prev" class="nav-link disabled">
-                <i class="fa fa-arrow-left"></i> Previous
-            </a>
-        </div>
-        <div class="col themed-grid-col"></div>
-        <div class="col themed-grid-col">
-            <a rel="next" href="the-code/" class="nav-link">
-                Next <i class="fa fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
 <!-- endblock -->
             
 
@@ -175,11 +208,11 @@
             
         </div>
 
-            <script>var base_url = '.';</script>
-            <script src="assets/js/jquery-3.3.1.slim.min.js""></script>
-            <script src="assets/js/bootstrap.bundle.min.js""></script>
-            <script src="assets/js/main.min.js""></script>
-                <script src="search/main.js" defer></script>
+            <script>var base_url = '../..';</script>
+            <script src="../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../assets/js/main.min.js""></script>
+                <script src="../../search/main.js" defer></script>
 
     </body>
 
