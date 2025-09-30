@@ -1,14 +1,14 @@
 <!doctype html>
 <html data-bs-theme="">
     <head>
-                <title>The Science - Working Memory Architecture and Demand (WoMAD) Model</title>
+                <title>The Code - Working Memory Architecture and Demand (WoMAD) Model</title>
 
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
             
-            <link rel="canonical" href="https://saamehsanaaee.github.io/WoMAD/the-science/">
+            <link rel="canonical" href="https://saamehsanaaee.github.io/WoMAD/the_code/">
             
 
             
@@ -57,15 +57,15 @@
             <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="
-                            nav-link text-gray text-decoration-none" href="..">[WoMAD Home]</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="
-                            nav-link text-gray text-decoration-none" href="../the-code/">[The Code]</a>
+                            nav-link text-gray text-decoration-none" href="..">[Home]</a>
                         </li>
                         <li class="nav-item">
                             <a class=" active 
-                            nav-link text-gray text-decoration-none" href="./">[The Science]</a>
+                            nav-link text-gray text-decoration-none" href="./">[The Code]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../the_science/">[The Science]</a>
                         </li>
                         <li class="nav-item">
                             <a class="
@@ -116,14 +116,49 @@
     <article>
         <header>
             
-                <h1 class=" title" id="component-title">The Science</h1>
+                <h1 class=" title" id="component-title">The Code</h1>
             
         </header>
-        <p><h1 id="working-memory-architecture-and-demand-womad-model">Working Memory Architecture and Demand (WoMAD) Model</h1>
-<h2 id="the-womad-model-an-overview">The WoMAD Model: An Overview</h2>
-<h2 id="the-data-hcp-young-adult-2025-release">The Data: HCP-Young Adult 2025 Release</h2>
-<h2 id="womad-modules-womad-is-a-modular-model">WoMAD Modules: WoMAD is a modular model!</h2>
-<h2 id="results-interpretation-and-implications">Results: Interpretation and Implications</h2></p>
+        <p><h1 id="the-womad-code">The WoMAD Code</h1>
+<p>Let's go through the WoMAD code: Usage, Installation, and the Structure of our Repository.</p>
+<h2 id="installation-and-usage-of-the-womad-package">Installation and Usage of the WoMAD Package</h2>
+<p>[RTFM for Python packages ... please stand by for installation and usage guide ;)]</p>
+<h2 id="the-repository">The Repository</h2>
+<p>Look at this refreshing tree of chaos, the structure of the repo:</p>
+<pre><code class="language-bash">.
+├── data
+│   ├── model_ready
+│   └── processed
+├── docs
+│   ├── img
+│   ├── index.md
+│   ├── logs
+│   │   ├── index.md
+│   │   └── upcoming.md
+│   ├── the_code.md
+│   └── the_science.md
+├── figures
+├── LICENSE
+├── Makefile
+├── mkdocs.yml
+├── models
+│   └── README.md
+├── pyproject.toml
+├── README.md
+├── tests
+│   └── test_all_modules.py
+├── WoMAD
+│   ├── data_module.py
+│   ├── hyperparameter_module.py
+│   ├── __init__.py
+│   ├── model_setup_module.py
+│   ├── model_train_module.py
+│   ├── model_valid_module.py
+│   ├── result_interp_module.py
+│   └── WoMAD_config.py
+└── WoMAD_main.py
+</code></pre>
+<p>Now, let's go through these files one by one.</p></p>
     </article>
 </section>
 <!-- endblock -->
@@ -135,13 +170,13 @@
                     <!-- block preview -->
     <div class="preview row row-cols-md-3 text-center pt-md-3" id="component-preview">
         <div class="col themed-grid-col">
-            <a rel="prev" href="../the-code/" class="nav-link">
+            <a rel="prev" href=".." class="nav-link">
                 <i class="fa fa-arrow-left"></i> Previous
             </a>
         </div>
         <div class="col themed-grid-col"></div>
         <div class="col themed-grid-col">
-            <a rel="next" href="../logs/" class="nav-link">
+            <a rel="next" href="../the_science/" class="nav-link">
                 Next <i class="fa fa-arrow-right"></i>
             </a>
         </div>
