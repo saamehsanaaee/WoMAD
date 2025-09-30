@@ -1,6 +1,9 @@
 # Data
 data/
 
+# Models (for now)
+models/
+
 # Python virtual environment
 venv/
 

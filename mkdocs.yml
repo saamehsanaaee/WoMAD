@@ -2,9 +2,9 @@ site_name: Working Memory Architecture and Demand (WoMAD) Model
 site_url: https://saamehsanaaee.github.io/WoMAD/
 
 nav:
-  - WoMAD Home: 'index.md'
-  - The Code: 'the-code.md'
-  - The Science: 'the-science.md'
+  - Home: 'index.md'
+  - The Code: 'the_code.md'
+  - The Science: 'the_science.md'
   - Logs: 'logs/index.md'
 
 theme:

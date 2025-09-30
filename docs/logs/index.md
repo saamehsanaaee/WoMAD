@@ -1,6 +1,6 @@
 # WoMAD Project Logs
 
-You can find the logs and upcoming plans for the WoMAD model in this page.
+This page includes an overview and all the logs for the WoMAD project.
 
 * Get a glance at the process (and hopefully, progess) of WoMAD: [Chronological Logs](#chronological-logs)
 * Take a look at our upcoming plans for the model: [Upcoming Versions and Plans](upcoming.md)
@@ -9,9 +9,9 @@ You can find the logs and upcoming plans for the WoMAD model in this page.
 
 ## Overview:
 
-* Current version of WoMAD: 0.1.2
-* Current step: Outlining the `.py` files
-* Next step: Outline documentation and start defining basic functions for data acquisition
+* Current version of WoMAD: 0.1.4
+* Current state: Basic structure of modules is defined through simple function and docstrings
+* Upcoming: Populating the modules with code, sampling the  dataset (10 subjects) for basic pipeline tests, and creation of a detailed outline for the documenation
 
 ---
 
@@ -52,3 +52,16 @@ The `.py` files are now partially outlined on a very high level. The next step i
 **Outlined all `.py` files to create the basic structure of the modules (v0.1.3)**
 
 The `.py` files are now properly outlined. The next step is to populate each section with their respective functions.
+
+#### Log #5: 2025-09-30
+
+**Created basic structure for all WoMAD modules (v0.1.4)**
+
+All WoMAD `.py` module files now have the basic structure of the code. Functions, docstrings, paths, etc. have been added and the modules now require a "fill in the blanks" step to create the first iteration of the WoMAD model, ready for basic tests.
+
+Here's the exact list of changes made in the commits for v0.1.4:
+
+* `WoMAD_config.py` included improper and lengthy variable names. They are improved now.
+* All modules inside `./WoMAD/` directory included dashes in the names instead of underscores. This is edited to ensure proper import of the modules when necessary.
+* All `.py` files now include the basic code structure that ensure the logical flow we need the data to go through. Thismeans that after the current version, if no bugs are found (LOL, right?), we can move on to create the actual code for each module which you can see in [the upcoming page](upcoming.md).
+* Other minute changes have been made in docs, the `.toml` file, and other "housekeeping" parts of the repository that can be called "small edits" for now. (No mojor changes have been made in the non-`.py` files.)

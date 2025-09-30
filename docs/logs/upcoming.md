@@ -1,5 +1,3 @@
-# Upcoming versions:
-
 ## WoMAD v0.2.0
 
 * **Data Acquisition & Preprocessing**
