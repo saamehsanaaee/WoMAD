@@ -10,7 +10,7 @@ requires-python = ">=3.9"
 license = {text = "Creative Commons Attribution 4.0 International (CC BY 4.0)"}
 authors = [
     { name = "Saameh Sanaaee", email = "saameh.sanaaee@neuromatchacademy.org" },
-    { name = "Baitong Mu", email = "TBD! :)"}
+    { name = "Baitong Mu", email = "mub25@wfu.edu"}
 ]
 readme = "README.md"
 classifiers = [
