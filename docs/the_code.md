@@ -18,9 +18,6 @@ Look at this refreshing tree of chaos, the structure of the repo:
 ├── docs
 │   ├── img
 │   ├── index.md
-│   ├── logs
-│   │   ├── index.md
-│   │   └── upcoming.md
 │   ├── the_code.md
 │   └── the_science.md
 ├── figures

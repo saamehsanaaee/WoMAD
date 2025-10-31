@@ -5,7 +5,6 @@ nav:
   - Home: 'index.md'
   - The Code: 'the_code.md'
   - The Science: 'the_science.md'
-  - Logs: 'logs/index.md'
 
 theme:
   name: simple-blog
