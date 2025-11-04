@@ -1,8 +1,9 @@
 """
     This module is designed to achieve these tasks:
-    - Develop functions to download the data
+    - Develop functions to access or download the data
     - Parse the dataset and isolate trials using the EV files
     - Normalize data and save to a DataFrame
+    - Define task-specific baselines and references
 """
 
 import os
@@ -18,10 +19,10 @@ import nibabel as nib
 
 from . import WoMAD_config
 
-# File access:
+# File Access:
 def generate_paths():
     """
-    Uses the paths configured in the config file to create subject-specific paths.
+    Uses the paths configured in WoMAD_config to create subject-specific paths.
     """
     paths = {}
 
@@ -29,47 +30,50 @@ def generate_paths():
 
 def load_data_from_path():
     """
-    Reads the contents of the .zip files.
+    Reads the contents of each subject's files.
     """
     try:
-        # Check file path
-        return np.array([])
+        # Use paths from generate_paths()
+        # to create np.array of the data.
 
         # Extract NIfTI and EV files
-        fmri_timeseries = 1.00 # BOLD Signals as floats
-        ev_txt_file = "place-holder" # EVs in .txt format
-        return fmri_timeseries, ev_txt_file
+        fmri_timeseries = 1.00 # BOLD Signals as floats (should be a np.array)
+        ev_file = "place-holder" # EVs in .txt format
+        return fmri_timeseries, ev_file
 
     except Exception as e:
         print("Error!")
 
-    return np.array([])
-
-
-# Processing:
-## Trial isolation:
+# Preprocessing:
+## Parse and Isolate Trials
 def isolate_trials():
     """
-    Isolates each task trial based on EV files.
+    Parses through the data and isolates each task trial using EV files.
     """
     trial_list = []
 
     return trial_list
 
 ## Normalization
-def normalize_data():
+def normalize_data(data, norm_mode):
     """
-    Normalizes a numpy array.
+    Normalizes a np.array.
     """
     data = np.array([])
-    # Uses if statements, set up normalization processes based on type of normalization.
+    # Use if-statements based on norm_mode and normalizes data.
     return data
 
-## Creating the WoMAD_data class
+## Save to Pandas DataFrame
+def save_to_df():
+    """
+    """
+    # Save data to model-ready folder.
+
+# Initial Processing (with the WoMAD_data class):
 class WoMAD_data(Dataset):
     def __init__(self, data_paths: list, processed_paths: list):
         """
-        Initializing the dataset with basic configuration.
+        Basic configuration of the dataset.
         """
         self.data_paths = data_paths
         self.processed_paths = processed_paths
@@ -84,23 +88,35 @@ class WoMAD_data(Dataset):
 
     def __getitem__(self, indx: int):
         """
-        Loads and preprocesses one subject's data.
+        Loads one subject's data.
         """
-        model_ready_data = []
-        # Step 1: Load processed data
-        # Step 2: Basic processing (normalization, resampling, etc.)
-        # Step 3: Produce model-ready ground truth for all outputs
-        # Step 4: Create model-ready data
-        #         (submodule-specific processing to create tensors)
-        return model_ready_data
+        return self.data[indx]
 
     def _load_data():
         """
-        Load voxel-based BOLD signals using NIfTI and EV files.
+        Load and parse the data using NIfTI and EV files.
         """
-        processed_data = []
-        # Step 1: Load minimally preprocessed HCP data using generate_paths() and load_data_from_path()
-        # Step 2: Concat fMRI run data
-        # Step 3: Load EV files
-        # Step 4: Isolate trials
-        return processed_data
+        parsed_data = []
+        # Load minimally preprocessed HCP data using generate_paths() and load_data_from_path()
+        # Concat fMRI run data
+        # Load EV files
+        # Isolate trials
+        return parsed_data
+
+    def basic_processing():
+        """
+        Normalization and saving with normalize_data() and save_to_df().
+        """
+        # Normalize the parsed data.
+        # Saved normalized data to "processed" folder.
+
+    def initial_processing():
+        """
+        Basic statistical analysis of the task-based activity.
+        """
+        # Step 1: Load parsed and preprocessed data.
+        # Step 2: Basic analysis
+        # Step 3: Correlation matrices and functional connectivity
+        # Step 4: Visualize the whole-brain, network-level, and voxel-wise activity
+
+# TODO: Add function for "validation set processing" which can process non-HCP data.

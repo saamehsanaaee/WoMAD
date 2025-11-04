@@ -12,6 +12,7 @@ unprocessed_path = os.path.join(project_root, "data", "HCP_zipped")
 processed_path = os.path.join(project_root, "data", "processed")
 model_ready_path = os.path.join(project_root, "data", "model_ready")
 
+# Subject Paths:
 # These paths haven't been created yet. Please stand by! Thank.
 subject_task_path = os.path.join(project_root, "")
 subject_fmri_path = os.path.join(project_root, "")
@@ -23,6 +24,8 @@ target_tasks = ["EMOTION"   , "GAMBLING"  , "LANGUAGE", "MOTOR",
 
 rest_tasks    = ["REST1", "REST2"]
 run_direction = ["LR"   , "RL"]
+
+# Environment Setup Variables and Parameters:
 
 # Temporary variables for development:
 dev_subjects = ["100206", "100307", "100408", "100610", "101006",

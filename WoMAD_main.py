@@ -27,10 +27,10 @@ from WoMAD import result_interp_module
 ## clear screen
 ## Welcome/Completion
 
-# WoMAD main pipeline
 def run_WoMAD(config):
-    # Initial environment setup
-    # Data and model setup
+    # Environment setup
+    # Data and initial processing
+    # Model setup
     # Training (and hyperparameter search)
     # Post-training: Analysis, Visualization, and Interpretation
 

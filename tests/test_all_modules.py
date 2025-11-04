@@ -18,7 +18,8 @@ from WoMAD import model_train_module
 from WoMAD import model_valid_module
 from WoMAD import result_interp_module
 
-# Create dummy data OR sample a tiny subset of the actual dataset
+# TODO: Create dummy data OR sample a tiny subset of the actual dataset
+# TODO: Create tests for each and every single function or method.
 
 # TESTS:
 def test_data_module():

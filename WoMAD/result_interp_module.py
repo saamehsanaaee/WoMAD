@@ -32,12 +32,12 @@ def visualize_and_interpret():
     # Save visualizations, maps, and metrics
     return 0
 
-def run_test_set():
+def run_pipeline_with_valid_dataset():
     """
-    TO DO: Create the function that runs full test and analysis after training.
+    TO DO: Create the function that runs full validation and analysis after training.
     """
-    # Iterate through test set
-    # Process test set
+    # Iterate through validation dataset
+    # Process validation dataset
     # Visualize
 
-    print("Test run complete. Test outputs saved to output directory.")
+    print("Validation run complete. Outputs saved to output directory.")

@@ -11,6 +11,17 @@ from typing import Dict, Tuple, Any
 
 from . import myProject_config
 
+def calc_graph_overlap():
+    """
+    TO DO: Create function to calculate graph overlap for Info-Flow module.
+    """
+    # Create graph network with the info-flow output.
+    # Calculate graph overlap:
+    ## Step 1: Normalization (Nodes and weights)
+    ## Step 2: Calculate overlap (Edge-wise percentage with thresholding and Jaccard Indx
+    ##         and Weighted correlation with vectorization and Pearson's
+    ## Step 3: Analyze topological similarity (Compare architecture using key topological metrics)
+
 def calc_dice_coeff():
     """
     TO DO: Create function to calculate Dice coefficient.

@@ -1,11 +1,16 @@
 """
     This module is designed to create the WoMAD modules and submodules as follows:
-    - Module 1: A 3D U-Net that labels voxels that are active (in WM tasks)
-    - Module 2: Includes 3 parallel submodules
-        - Submodule A: An LSTM that handels temporal information
-        - Submodule B: A 4D network that handels spatiotemporal information
-        - Submodule C: A GNN that handels "Information Flow" during the WM task
-    - Module 3: A fusion layer that combines the outputs of previous modules and generates the final outputs
+    - Information Flow Module:
+        - Granger Causality Analysis (GCA) for Effective Connectivity (EC)
+        - Hidden Markov Model (HMM) for Dynamic Functional Connectivity
+        - Supervised learning of info flow by Temporal GNN (TGNN)
+    - Core Module:
+        - Submodule A: A 3D-UNet that labels active nodes (voxels or parcels)
+        - Parallel Submodules:
+            - B-1: An LSTM that handels temporal information
+            - B-2: A 4D convolutional network which handels spatiotemporal information
+        - Submodule C: A fusion layer that combines the outputs of previous module,
+                       generating the final output
 """
 
 import torch
@@ -17,23 +22,29 @@ class WoMAD_model(nn.Module):
     def __init__(self, config: dict):
         """
         Sets up the complete WoMAD model with all modules and submodules.
+        (Each module and submodule includes a dynamic input layer that matches the size of input.)
         """
-        # Module 1: 3D-UNet
-        # Module 2: Parallel Submodules
-        ## Submodule A: LSTM (for temporal features)
-        ## Submodule B: ConvNet4D (for spatiotemporal features)
-        ## Submodule C: GNN (for information flow)
-        # Module 3: Fusion Layer
+        # Information Flow Module
+        ## Effective Connectivity: GCA
+        ## Dynamic Functional Connectivity: HMM
+        ## Final info-flow manifold: Temporal GNN
 
-    def forward(self, input: torch.Tensor):
+        # Core Module
+        ## Submodule A: 3D-UNet
+        ## Parallel submodule B-1: LSTM (Temporal features)
+        ## Parallel sunmodule B-2: ConvNet4D (Spatiotemporal features)
+        ## Submodule C: Fusion Layer
+
+    def forward(self, input: torch.Tensor, module_selection: str):
         """
         The forward pass that manages how the data passes through modules.
+        Path of data passage is based on selected module: "info-flow" or "core"
         """
-        # Module 1 input
-        # Module 2 inputs
-        ## Creating 4D data
-        ## Submodule inputs
-        # Module 3
+        # Info-flow input
+        # 3D-UNet input
+        # LSTM input
+        # ConvNet4D input
+        # Fusion input
         return outputs
 
     def _prepare_4d_data(self, input: torch.Tensor) -> torch.Tensor:
