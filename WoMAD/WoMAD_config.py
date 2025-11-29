@@ -6,27 +6,38 @@
 import os
 
 # Project Paths:
-project_root = os.path.abspath("../WoMAD_main.py")
+project_root = os.path.abspath("../")
 
 unprocessed_path = os.path.join(project_root, "data", "HCP_zipped")
-processed_path = os.path.join(project_root, "data", "processed")
+processed_path   = os.path.join(project_root, "data", "processed")
 model_ready_path = os.path.join(project_root, "data", "model_ready")
 
-# Subject Paths:
-# These paths haven't been created yet. Please stand by! Thank.
-subject_task_path = os.path.join(project_root, "")
-subject_fmri_path = os.path.join(project_root, "")
-subject_evfile_path = os.path.join(project_root, "")
-
 # WoMAD-specific variables:
-target_tasks = ["EMOTION"   , "GAMBLING"  , "LANGUAGE", "MOTOR",
-                "RELATIONAL", "SOCIAL"    , "WM"]
+target_tasks = ["WM", "EMOTION", "LANGUAGE"]
+
+target_subtasks = {
+    "WM"      : ["0bk_body", "0bk_faces", "0bk_places", "0bk_tools",
+                 "2bk_body", "2bk_faces", "2bk_places", "2bk_tools"],
+    "EMOTION" : ["fear", "neut"],
+    "LANGUAGE": ["math", "story"],
+}
+
+TR = 0.72
 
 rest_tasks    = ["REST1", "REST2"]
 run_direction = ["LR"   , "RL"]
 
+# Subjects with full 3T imaging protocol completed:
+full_3T_task_subjects = []
+
+with open("../data/full_3T_task_subjects.txt", "r") as file:
+    raw_list = file.read()
+    str_list = raw_list.strip().split(",")
+    num_list = [int(subID.strip()) for subID in str_list if subID.strip()]
+
+full_3T_task_subjects = num_list
+
 # Environment Setup Variables and Parameters:
 
 # Temporary variables for development:
-dev_subjects = ["100206", "100307", "100408", "100610", "101006",
-                "101107", "101309", "101915", "102109", "102311"]
+dev_subjects = ["100206", "100408"]

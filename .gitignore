@@ -1,7 +1,9 @@
 # Data
-data/
+data/HCP_zipped/
+data/model_ready/
+data/processed/
 
-# Models (for now)
+# Temporary ignores
 models/
 
 # Python virtual environment
