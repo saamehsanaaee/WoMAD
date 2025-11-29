@@ -160,7 +160,7 @@ def normalize_data(data : np.ndarray, norm_mode: str = "z_score"):
         range_ts_data = max_ts_data - min_ts_data
         range_ts_data[range_ts_data == 0] = 1.0
 
-        normalized_ts_data = (data - min_ts_data) / range_val
+        normalized_ts_data = (data - min_ts_data) / range_ts_data
 
         return normalized_ts_data
 
