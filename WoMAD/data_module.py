@@ -18,6 +18,8 @@ from torch.utils.data import Dataset, DataLoader
 import numpy as np
 import pandas as pd
 import nibabel as nib
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 from . import WoMAD_config
 
@@ -221,7 +223,7 @@ class WoMAD_data(Dataset):
         """
         Returns the total number of subjects in the dataset.
         """
-        return len(self.data_paths)
+        return len(self.data)
 
     def __getitem__(self, indx: int):
         """
@@ -235,7 +237,7 @@ class WoMAD_data(Dataset):
         """
         parsed_data = []
 
-        for subject in self.subject:
+        for subject in self.subjects:
             for run in self.runs:
                 paths = generate_paths(task = self.task, run = run,
                                        sub_list = [subject])
@@ -283,12 +285,114 @@ class WoMAD_data(Dataset):
 
         return self.processed_df
 
-    def initial_processing():
+    def _calc_corr_matrix(self, trial_data: np.ndarray) -> dict:
         """
-        Basic statistical analysis of the task-based activity.
+        Calculates whole-brain and network-level correlation matrices for a single isolated trial.
+
+        NOTE:   Network-level correlations require network masks
+                or specific voxel/parcel definitions.
+                These have not yet been defined in the config files.
+
+        Arguments:
+            trial_data (np.ndarray): The isolated trial's time series data.
+
+        Returns:
+            A dictionary containing the calculated correlation matrix.
         """
-        # TODO: Create the functions for analysis steps:
-        # Basic analysis, Correlation matrices + functional connectivity
-        # Visualize the whole-brain, network-level, and voxel-wise activity
+        # All voxels (whole_brain)
+        whole_brain_corr_mat = np.corrcoef(trial_data)
+
+        whole_brain_corr_mat[np.isnan(whole_brain_corr_mat)] = 0
+
+        # TODO: Create network-level correlation
+
+        return {
+            "whole_brain"  : whole_brain_corr_mat,
+            "network_level": whole_brain_corr_mat   # Temp solution until the network-level is defined.
+        }
+
+    def calc_func_connectivity(self):
+        """
+        Calculates the correlation matrices for all isolated trials.
+
+        Returns:
+            The updated list of trial dictionaries with the correlation matrices added.
+        """
+        for trial in self.data:
+            trial_ts_data = trial.get("data") # Should be normalized
+
+            # Correlation matrix
+            trial_corr_mat = self._calc_corr_matrix(trial_ts_data)
+
+            trial["corr_matrix"] = trial_corr_mat
+
+        return self.data
+
+    def calc_basic_stats(self):
+        """
+        Calculate basic statistics (mean and std) of
+        the activity for isolated trials across all nodes/voxels.
+
+        Returns:
+            Updated list of trial dictionaries with "stats" key added.
+        """
+        for trial in self.data:
+            trial_ts_data = trial.get("data")
+
+            if trial_ts_data is None:
+                continue
+
+            # Mean activity
+            node_mean_activity = np.mean(trial_ts_data, axis = 1)
+
+            # Standard deviation
+            node_std_activity = np.std(trial_ts_data, axis = 1)
+
+            # Overall average for entire trial
+            trial_mean_activity = np.mean(node_mean_activity)
+            trial_mean_of_std   = np.mean(node_std_activity)
+
+            trial["stats"] = {
+                "mean_per_node": node_mean_activity,
+                "std_per_node" : node_std_activity,
+                "trial_mean"   : trial_mean_activity,
+                "overall_std"  : trial_mean_of_std
+            }
+
+        return self.data
+
+    def visualize_correlations(self,
+                               target_trial_idx: int = 0,
+                               matrix_type: str = "whole_brain"):
+        """
+        Generate a heatmap visualization for one trial's correlation matrix.
+
+        Arguments:
+            target_trial_idx (int): Index of the trial in self.data
+            matrix_type      (str): The type of matrix to plot
+                                    "whole_brain" or "network_level"
+        """
+        trial = self.data[target_trial_idx]
+        corr_matrices = trial.get("corr_matrix")
+
+        matrix_to_plot = corr_matrices.get(matrix_type)
+
+        plt.figure(figsize = (10, 8))
+        sns.heatmap(matrix_to_plot,
+                    cmap = "RdBu_r",
+                    vmin = -1, vmax = 1,
+                    square = True,
+                    cbar_kws = {"label" : "Pearson Correlation Coefficient"})
+
+        subject_id = trial.get("subject", "N/A")
+
+        task = trial.get("task", "N/A")
+        subtask = trial.get("subtask", "N/A")
+
+        plt.title(f"{matrix_type.title()} Correlation Matrix\nSubject: {subject_id}, {task}: {subtask}, Trial {target_trial_idx}")
+        plt.xlabel("Node/Voxel Index")
+        plt.ylabel("Node/Voxel Index")
+
+        plt.show()
 
 # TODO: Add function for "validation set processing" which can process non-HCP data.
