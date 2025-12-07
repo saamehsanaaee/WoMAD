@@ -18,7 +18,8 @@ import torch.nn as nn
 
 from . import WoMAD_config
 
-class WoMAD_model(nn.Module):
+# Information flow module
+class WoMAD_info_flow(nn.Module):
     def __init__(self, config: dict):
         """
         Sets up the complete WoMAD model with all modules and submodules.
@@ -29,6 +30,43 @@ class WoMAD_model(nn.Module):
         ## Dynamic Functional Connectivity: HMM
         ## Final info-flow manifold: Temporal GNN
 
+    def forward(self, input: torch.Tensor, module_selection: str):
+        """
+        The forward pass that manages how the data passes through modules.
+        """
+
+        return outputs
+
+    def _prepare_4d_data(self, input: torch.Tensor) -> torch.Tensor:
+        """
+        Helper method to create the 4D network for the second module.
+        """
+        return four_dim_data
+
+def model_config(config: dict) -> WoMAD_info_flow:
+    """
+    Initialized WoMAD and moves it to the device.
+
+    Argument:
+        config (dict): WoMAD config dictionary
+
+    Returns:
+        WoMAD: Model ready to be trained.
+    """
+    model = WoMAD_info_flow(config)
+
+    if config["system"]["use_gpu"] and torch.cuda.is_available():
+        model.cuda()
+
+    return model
+
+# Core module
+class WoMAD_core(nn.Module):
+    def __init__(self, config: dict):
+        """
+        Sets up the complete WoMAD model with all modules and submodules.
+        (Each module and submodule includes a dynamic input layer that matches the size of input.)
+        """
         # Core Module
         ## Submodule A: 3D-UNet
         ## Parallel submodule B-1: LSTM (Temporal features)
@@ -38,9 +76,7 @@ class WoMAD_model(nn.Module):
     def forward(self, input: torch.Tensor, module_selection: str):
         """
         The forward pass that manages how the data passes through modules.
-        Path of data passage is based on selected module: "info-flow" or "core"
         """
-        # Info-flow input
         # 3D-UNet input
         # LSTM input
         # ConvNet4D input
@@ -53,7 +89,7 @@ class WoMAD_model(nn.Module):
         """
         return four_dim_data
 
-def model_config(config: dict) -> WoMAD_model:
+def model_config(config: dict) -> WoMAD_core:
     """
     Initialized WoMAD and moves it to the device.
 
@@ -63,7 +99,7 @@ def model_config(config: dict) -> WoMAD_model:
     Returns:
         WoMAD: Model ready to be trained.
     """
-    model = WoMAD_model(config)
+    model = WoMAD_core(config)
 
     if config["system"]["use_gpu"] and torch.cuda.is_available():
         model.cuda()

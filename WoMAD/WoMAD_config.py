@@ -12,6 +12,8 @@ unprocessed_path = os.path.join(project_root, "data", "HCP_zipped")
 processed_path   = os.path.join(project_root, "data", "processed")
 model_ready_path = os.path.join(project_root, "data", "model_ready")
 
+sub_list_txt_path = os.path.join(project_root, "data", "full_3T_task_subjects.txt")
+
 # WoMAD-specific variables:
 target_tasks = ["WM", "EMOTION", "LANGUAGE"]
 
@@ -30,7 +32,7 @@ run_direction = ["LR"   , "RL"]
 # Subjects with full 3T imaging protocol completed:
 full_3T_task_subjects = []
 
-with open("../data/full_3T_task_subjects.txt", "r") as file:
+with open(sub_list_txt_path, "r") as file:
     raw_list = file.read()
     str_list = raw_list.strip().split(",")
     num_list = [int(subID.strip()) for subID in str_list if subID.strip()]
@@ -38,6 +40,10 @@ with open("../data/full_3T_task_subjects.txt", "r") as file:
 full_3T_task_subjects = num_list
 
 # Environment Setup Variables and Parameters:
+## Dictionary for the model config and other global variables
 
 # Temporary variables for development:
-dev_subjects = ["100206", "100408"]
+pilot_subjects = [283543, 180937, 379657, 145632, 100206,
+                  270332, 707749, 454140, 194847, 185038]
+
+dev_subjects = [100206, 100408]
