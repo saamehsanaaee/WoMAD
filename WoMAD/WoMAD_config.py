@@ -25,6 +25,8 @@ target_subtasks = {
 }
 
 TR = 0.72
+target_parcellation = 360   # Glasser
+target_timepoints   = 20    # Average trial length
 
 rest_tasks    = ["REST1", "REST2"]
 run_direction = ["LR"   , "RL"]
@@ -41,6 +43,16 @@ full_3T_task_subjects = num_list
 
 # Environment Setup Variables and Parameters:
 ## Dictionary for the model config and other global variables
+lstm_config = {
+    "hidden_size" : 128,
+    "num_layers"  :   2,
+    "dropout"     : 0.2
+}
+
+fusion_config = {
+    "total_input_feats" : 512,      # TODO: Calculate total input based on lstm and conv4d output shapes.
+    "hidden_size"       : 128
+}
 
 # Temporary variables for development:
 pilot_subjects = [283543, 180937, 379657, 145632, 100206,
