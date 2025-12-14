@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "Working Memory Architecture and Demand (WoMAD) Model"
-version = "0.1.4"
+version = "0.0.5"
 description = "WoMAD is a multi-module neural network based in PyTorch, created with the goal of understanding the structure and function of our working memory and how it is involved in other cognitive tasks."
 requires-python = ">=3.9"
 license = {text = "Creative Commons Attribution 4.0 International (CC BY 4.0)"}
