@@ -25,8 +25,8 @@ target_subtasks = {
 }
 
 TR = 0.72
-target_parcellation = 360   # Glasser
-target_timepoints   = 20    # Average trial length
+target_parcellation = 360   # Temporary, based on Glasser
+target_timepoints   = 20    # Temporary, average trial length
 
 rest_tasks    = ["REST1", "REST2"]
 run_direction = ["LR"   , "RL"]
@@ -50,7 +50,7 @@ lstm_config = {
 }
 
 fusion_config = {
-    "total_input_feats" : 512,      # TODO: Calculate total input based on lstm and conv4d output shapes.
+    "total_input_feats" : 736, # Temporary: 360 parcels, 128 from the LSTM, and 248 guessing from the 4D network
     "hidden_size"       : 128
 }
 

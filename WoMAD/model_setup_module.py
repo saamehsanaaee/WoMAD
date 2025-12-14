@@ -63,7 +63,7 @@ class DynamicInput(nn.Module):
         else: # current_nodes < self.target_nodes
             required_padding = self.target_nodes - current_nodes
 
-            x_padded = F.pad(0, 0, 0, required_padding)
+            x_padded = F.pad(x, (0, 0, 0, required_padding))
 
             return x_padded
 
@@ -118,41 +118,61 @@ class WoMAD_core(nn.Module):
         """
         super().__init__()
 
+        target_nodes = WoMAD_config.target_parcellation         # 360, Temporary.
+        timepoints = WoMAD_config.target_timepoints             # 20, Temporary.
+
+        lstm_h_size = WoMAD_config.lstm_config["hidden_size"]   # 128
+
+        conv4d_out_size = 64                                    # From simplified config
+
         # Dynamic Adapter
         self.dyn_input_adapter = DynamicInput(target_nodes = 360)
-        # TODO: Define target_nodes in WoMAD_config.
-
-        target_nodes = 360 # Temporary. Should be defined in config.
-
-        timepoints = 20 # Temporary. Should be defined using other functions.
 
         # Core Module
         ## Submodule A: 3D-UNet
-        self.unet_input = nn.Linear(T, T)
+        ## Input shape = (batch, target_nodes, timepoints)
         self.segment_and_label = nn.Sequential(
-            # TODO: Add the nn.Conv3d() function
-            nn.Indentity()
+            nn.Conv1d(in_channels = target_nodes,
+                      out_channels = target_nodes,
+                      kernel_size = 3, padding = 1),
+            nn.ReLU(),
+            nn.Identity()          # FIX: Placeholder should be replaced with the 3D-UNet.
         )
 
         ## Parallel submodule B-1: LSTM (Temporal features)
-        self.lstm_input = nn.Linear(target_nodes, target_nodes)
-        self.temporal_lstm = nn.LSTM(input_size  = timepoints,
-                                     hidden_size = config["lstm"]["hidden_size"],
-                                     batch_first = TRUE)
+        self.temporal_lstm = nn.LSTM(input_size  = target_nodes,
+                                     hidden_size = lstm_h_size,
+                                     num_layers  = WoMAD_config.lstm_config["num_layers"],
+                                     dropout     = WoMAD_config.lstm_config["dropout"],
+                                     batch_first = True)
 
-        ## Parallel sunmodule B-2: ConvNet4D (Spatiotemporal features)
-        # TODO: Prepare data for the ConvNet4D.
+        ## Parallel submodule B-2: ConvNet4D (Spatiotemporal features)
         self.spatiotemporal_cnv4d = nn.Sequential(
-            # TODO: Add the nn.Conv3d() function
-            nn.Identity()
+            nn.Conv2d(in_channels  = 1,
+                      out_channels = 32,
+                      kernel_size  = (3, 3), padding = 1),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size = (2, 2)),
+            nn.Conv2d(in_channels  = 32,
+                      out_channels = conv4d_out_size,
+                      kernel_size  = (3, 3), padding = 1),
+            nn.ReLU(),
+            nn.AdaptiveAvgPool2d((1, 1)),
+            nn.Flatten()
         )
 
         ## Submodule C: Fusion Layer
-        self.fusion_layer = nn.Sequential(
-            nn.Linear(512, 128),
-            nn.ReLU(),
-            nn.Linear(128, config["data"]["num_classes"])
+        fusion_input_size = lstm_out_size + conv4d_out_size     # 192
+        self.fusion_block = nn.Sequential(
+            nn.Linear(fusion_input_size, WoMAD_config.fusion_config["hidden_size"]),
+            nn.ReLU()
         )
+
+        ### Overall, WM-based activity score:
+        self.overall_activity_score = nn.Linear(WoMAD_config.fusion_config["hidden_size"], 1)
+
+        ### Node-based (voxel-based or parcel-based) activity scores:
+        self.node_wise_activity_scores = nn.Linear(WoMAD_config.fusion_config["hidden_size"], target_nodes)
 
     def _prepare_4d_data(self, input: torch.Tensor) -> torch.Tensor:
         """
@@ -173,9 +193,12 @@ class WoMAD_core(nn.Module):
 
         return four_dim_data
 
-    def forward(self, input: torch.Tensor, module_selection: str):
+    def forward(self, input: torch.Tensor) -> torch.Tensor:
         """
         The forward pass that manages how the data passes through modules.
+
+        Sequence for forward pass:
+            Input -> Segmentation (3D-UNet) -> (LSTM, Conv4D) -> Fusion
 
         Input:
             Tensor with shape (batch, current_nodes, timepoints)
@@ -184,24 +207,25 @@ class WoMAD_core(nn.Module):
         x_dynamically_adapted = self.dyn_input_adapter(input)
 
         # 3D-UNet
-        # TODO: Create the required 5D input for UNet (with spatial reconstruction).
-        x_ready_for_unet = self.segment_and_label(x_dynamically_adapted.mean(dim=2))
+        unet_out_timeseries = self.segment_and_label(x_dynamically_adapted)
 
         # LSTM
-        x_for_lstm = x_dynamically_adapted.transpose(1, 2)          # NOTE: Shape is now (batch, timepoints, target_nodes)
-        _, (h_n, c_n) = self.temporal_lstm(x_for_lstm)
+        x_for_lstm = unet_out_timeseries.transpose(1, 2)
+        _, (h_n, _) = self.temporal_lstm(x_for_lstm)
         lstm_out = h_n[-1]
 
         # ConvNet4D
-        x_for_conv4d = self._prepare_4d_data(x_dynamically_adapted)
-        conv4d_out = self.spatiotemporal_cnv4d(x_for_conv4d).mean(dim = [1, 2, 3])
+        x_for_conv4d = self._prepare_4d_data(unet_out_timeseries)
+        conv4d_out = self.spatiotemporal_cnv4d(x_for_conv4d)
 
         # Fusion Layer
         fused_feats = torch.cat([lstm_out, conv4d_out], dim = 1)
+        shared_features = self.shared_fusion_block(fused_feats)
 
-        core_module_out = self.fusion_layer(fused_feats)
+        overall_score = self.overall_activity_score(shared_features)
+        node_scores   = self.node_wise_activity_scores(shared_features)
 
-        return core_module_out
+        return overall_score, node_scores
 
 
 def model_config(config: dict) -> WoMAD_core:
