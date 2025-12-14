@@ -54,6 +54,11 @@ fusion_config = {
     "hidden_size"       : 128
 }
 
+training_loss_weights = {
+    "overall_loss_weight" : 0.5,
+    "node_loss_weight"    : 0.5
+}
+
 # Temporary variables for development:
 pilot_subjects = [283543, 180937, 379657, 145632, 100206,
                   270332, 707749, 454140, 194847, 185038]
