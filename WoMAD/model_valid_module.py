@@ -113,7 +113,7 @@ def run_valid_epoch(model, data_loader: DataLoader,
     final_node_pred   = torch.cat(all_node_pred)
     final_node_target = torch.cat(all_node_target)
 
-    metrics = calc_all_metrics(finall_overall_pred,
+    metrics = calc_all_metrics(final_overall_pred,
                                final_node_pred,
                                final_overall_target,
                                final_node_target)
