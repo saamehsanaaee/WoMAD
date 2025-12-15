@@ -227,9 +227,29 @@ class WoMAD_data(Dataset):
 
     def __getitem__(self, indx: int):
         """
-        Loads one subject's data.
+        Loads one trial's data and returns:
+            - input timeseries (X)
+            - overall target (Y_overall)
+            - node target (Y_node)
         """
-        return self.data[indx]
+        trial = self.data[indx]
+
+        # Input data with shape (target_nodes, timepoints)
+        data_np = trial["data"]
+        data_tensor = torch.from_numpy(data_np).float()
+
+        # Overall target:
+        # TODO: Add overall target components.
+
+        # Placeholder:
+        overall_target_np = trial["stats"]["trial_mean"]
+        overall_target_tensor = torch.tensor([overall_target_np]).float()
+
+        # Node target with shape (target_nodes)
+        node_target_np = trial["stats"]["mean_per_node"]
+        node_target_tensor = torch.from_numpy(node_target_np).float()
+
+        return data_tensor, overall_target_tensor, node_target_tensor
 
     def _load_data(self):
         """
