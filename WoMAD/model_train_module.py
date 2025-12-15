@@ -128,7 +128,7 @@ def run_kfold_training(dataset, config: dict):
             valid_loss, val_metrics = run_valid_epoch(model, val_loader, loss_funcs, epoch, config)
 
             fold_history["valid_loss"].append(valid_loss)
-            fold_history["val_metrics"].append(valid_metrics)
+            fold_history["val_metrics"].append(val_metrics)
 
         all_kfold_train_stats.append({"fold": fold + 1, "history": fold_history})
 
