@@ -15,7 +15,9 @@ from torch.utils.data import DataLoader, Subset
 from sklearn.model_selection import KFold
 
 from . import WoMAD_config
+
 from .model_setup_module import DynamicInput, WoMAD_core
+from .model_valid_module import run_valid_epoch
 
 def WoMAD_optimizer(model: nn.Module, config: dict) -> torch.optim.Optimizer:
     """
@@ -123,8 +125,10 @@ def run_kfold_training(dataset, config: dict):
             train_loss = run_training_epoch(model, train_loader, optimizer, loss_funcs, epoch, config)
             fold_history["train_loss"].append(train_loss)
 
-            valid_loss = run_validation_epoch(model, val_loader, loss_funcs, epoch, config)
+            valid_loss, val_metrics = run_valid_epoch(model, val_loader, loss_funcs, epoch, config)
+
             fold_history["valid_loss"].append(valid_loss)
+            fold_history["val_metrics"].append(valid_metrics)
 
         all_kfold_train_stats.append({"fold": fold + 1, "history": fold_history})
 
