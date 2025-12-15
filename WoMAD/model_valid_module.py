@@ -105,7 +105,7 @@ def run_valid_epoch(model, data_loader: DataLoader,
 
     avg_loss = total_val_loss / total_samples
 
-    print(f"Epoch {epoch+1:02d} | Validation Loss: {avg_loss: .6g}")
+    print(f"Epoch {epoch+1:02d} | Validation Loss: {avg_loss: .6f}")
 
     final_overall_pred   = torch.cat(all_overall_pred).squeeze()
     final_overall_target = torch.cat(all_overall_target)
